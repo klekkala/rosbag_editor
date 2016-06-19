@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/kiran/rosbuild_ws/package_dir/rosbag_modifier/build/devel/setup.sh
