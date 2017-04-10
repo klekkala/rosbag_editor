@@ -31,12 +31,12 @@ int main(int argc, char** argv)
   ros::init(argc, argv, "message_synchronizer_node");
 
   ros::NodeHandle nh;
-  message_filters::Subscriber<sensor_msgs::Image> odom_sub(nh, "/kinect2/qhd/image_color_rect", 1);
-  message_filters::Subscriber<sensor_msgs::Image> scan_sub(nh, "/kinect2/qhd/image_color_rect", 1);
+  message_filters::Subscriber<sensor_msgs::Image> rgb_sub(nh, "/kinect2/qhd/image_color_rect", 1);
+  message_filters::Subscriber<sensor_msgs::Image> depth_sub(nh, "/kinect2/qhd/image_depth_rect", 1);
 
   typedef sync_policies::ApproximateTime<sensor_msgs::Image, sensor_msgs::Image> MySyncPolicy;
   // ApproximateTime takes a queue size as its constructor argument, hence MySyncPolicy(10)
-  Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), odom_sub, scan_sub);
+  Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), rgb_sub, depth_sub);
   sync.registerCallback(boost::bind(&synchronizedCallback, _1, _2));
 
   ros::spin();
