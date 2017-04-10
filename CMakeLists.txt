@@ -10,8 +10,7 @@ FIND_PACKAGE(OpenCV REQUIRED)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
 rosbuild_add_executable(${PROJECT_NAME}
-main.cc
-Thirdparty/DLib/FileFunctions.cpp)
+ros_sync.cpp)
 
 target_link_libraries (${PROJECT_NAME}
 ${OpenCV_LIBS})
